@@ -1,5 +1,5 @@
 # **WORK IN PROGRESS**
-![etl](https://user-images.githubusercontent.com/66283452/208748904-f7ada2f7-8ced-4bbd-a473-85102fab9c5e.png)
+
 https://docs.google.com/spreadsheets/d/1ipHa7oxNVYF1zpFfDz5yG63RP0GvpRLFOzBozBHIdRA/edit?usp=sharing
 
 improvments:
@@ -31,36 +31,27 @@ improvments:
 # 2. **Solution Plan**
 ## 2.1. How was the problem solved?
 
-<p align="justify"> To gather the information regarding H&M male jeans the following steps were performed: </p>
+<p align="justify"> We managed to gather the information from H&M male jeans by creating an ETL, which consists of following steps (jobs): </p>
 
 - <b> Understanding the Business Problem</b>: Understanding the main objective we are trying to achieve and plan the solution to it. 
 
-# COLOCAR AQUI A DESCRIÇÃO DOS JOBS E A IMAGEM DO EXCALIDRAW
+- <b> Extraction </b>: Scraping product_id and product_type in showroom page (Job 01); getting other attributes from each product and saving it all in Pandas DataFrame (Job 02). More information in <a href="https://github.com/brunodifranco/project-outleto-clustering#5-feature-engineering">Section 5</a>.</p>
 
-- <b> Collecting Data</b>: Collecting data from Kaggle.
+- <b> Transformation </b>: Data Cleaning (Job 03). More information in <a href="https://github.com/brunodifranco/project-outleto-clustering#5-feature-engineering">Section 5</a>.</p>
 
-- <b> Data Cleaning</b>: Checking data types, treating Nan's, renaming columns, dealing with outliers and filtering data.
+- <b> Loading </b>: Inserting data in PostgreSQL Database (Job 04). More information in <a href="https://github.com/brunodifranco/project-outleto-clustering#5-feature-engineering">Section 5</a>.</p>
 
-- <b> Feature Engineering</b>: Creating new features from the original ones, so that those could be used in the ML model. More information in <a href="https://github.com/brunodifranco/project-outleto-clustering#5-feature-engineering">Section 5</a>.</p>
+- <b> Streamlit App </b>: Loading Database in Streamlit App (Job 05); displaying data and adding filters in Streamlit App (Job 06). More information in <a href="https://github.com/brunodifranco/project-outleto-clustering#5-feature-engineering">Section 5</a>.</p>
 
-- <p align="justify"> <b> Exploratory Data Analysis (EDA)</b>: Exploring the data in order to obtain business experience, look for data inconsistencies, useful business insights and find important features for the ML model. This was done by using the <a href="https://pypi.org/project/pandas-profiling/">Pandas Profiling</a> library. Two EDA profile reports are available for download <a href="https://github.com/brunodifranco/project-outleto-clustering/tree/main/pandas-profiling-reports"> here</a>, one still with the bad users and one without them. 
+Below there's an illustration showing the complete ETL process and dynamic: 
 
-- <b> Data Preparation</b>: Applying <a href="https://www.atoti.io/articles/when-to-perform-a-feature-scaling/">Rescaling Techniques</a> in the data.
-
-- <b> Feature Selection</b>: Selecting the best features to use in the Machine Learning algorithm.
-
-- <b> Space Analysis and Dimensionality Reduction</b>: <a href="https://builtin.com/data-science/step-step-explanation-principal-component-analysis">PCA</a>, <a href="https://umap-learn.readthedocs.io/en/latest/">UMAP</a> and <a href="https://gdmarmerola.github.io/forest-embeddings/">Tree-Based Embedding</a> were used to get a better data separation. 
-
-- <p align="justify"> <b> Machine Learning Modeling</b>: Selecting the number of clusters (K) and then training Clustering Algorithms. More information in <a href="https://github.com/brunodifranco/project-outleto-clustering#6-machine-learning-modeling">Section 6</a>.</p>
-
-- <b> Model Evaluation</b>: Evaluating the model by using Silhouette Score and Silhouette Visualization.
-
-- <b>Cluster Exploratory Data Analysis</b>: Exploring the clusters to obtain business experience and to find useful business insights. In addition to that, this step also helped building the business report. The top business insights found are available in <a href="https://github.com/brunodifranco/project-outleto-clustering#7-top-business-insights"> Section 7</a>. 
-
-- <p align="justify"> <b>Final Report and Deployment</b>: Providing a business report regarding the clusters, as well as a list of customers that will participate in Insiders. This report was built using <a href="https://powerbi.microsoft.com/pt-br/">Power BI</a>, as well as <a href="https://render.com/">Render Cloud</a> and <a href="https://www.google.com/intl/pt-BR/drive/">Google Drive</a>, so that it could be accessed from anywhere. More information in <a href="https://github.com/brunodifranco/project-outleto-clustering#8-final-report-and-deployment"> Section 8</a>.</p>
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/66283452/208748904-f7ada2f7-8ced-4bbd-a473-85102fab9c5e.png" alt="drawing" />
+</p>
 
 ## 2.2. Tools and techniques used:
-- [Python 3.10.8](https://www.python.org/downloads/release/python-3108/), [Pandas](https://pandas.pydata.org/), [Matplotlib](https://matplotlib.org/), [Seaborn](https://seaborn.pydata.org/), [Sklearn](https://scikit-learn.org/stable/), [SciPy](https://scipy.org/) and [Pandas Profiling](https://pypi.org/project/pandas-profiling/).
+- [Python 3.10.8](https://www.python.org/downloads/release/python-3108/), [Pandas](https://pandas.pydata.org/) and [Beautiful Soup](https://beautiful-soup-4.readthedocs.io/en/latest/).
+- [Web Scraping Techniques] ()
 - [SQL](https://www.w3schools.com/sql/) and [PostgresSQL](https://www.postgresql.org/).
 - [Jupyter Notebook](https://jupyter.org/) and [VSCode](https://code.visualstudio.com/).
 - [Power BI](https://powerbi.microsoft.com/pt-br/). 
