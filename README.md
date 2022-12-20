@@ -5,3 +5,9 @@ Work in Progress
 
 
 https://docs.google.com/spreadsheets/d/1ipHa7oxNVYF1zpFfDz5yG63RP0GvpRLFOzBozBHIdRA/edit?usp=sharing
+
+
+
+
+improvments:
+- Airflow
