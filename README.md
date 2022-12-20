@@ -8,7 +8,7 @@ improvments:
 
 <h1 align="center">Customer loyalty program for E-commerce</h1>
 
-<p align="center">A clustering project</p>
+<p align="center">A Data Engineering Project</p>
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/66283452/204150853-c732bdf8-1651-4eb2-a27b-8bfc2fdfc02a.png" alt="drawing" width="450" height="550"/>
@@ -19,50 +19,23 @@ improvments:
 *The in-depth Python code explanation is available in [this](https://github.com/brunodifranco/project-outleto-clustering/blob/main/notebooks/outleto.ipynb) Jupyter Notebook.*
 
 # 1. **Outleto and Business Problem**
-<p align="justify"> Outleto is a multibrand outlet company, meaning it sells second line products of various companies at lower prices, through an E-commerce platform. Outleto's Marketing Team noticed that some customers tend to buy more expensive products, in higher quantities and more frequently than others, therefore contributing to a higher share of Outleto's total gross revenue. Because of that, the Marketing Team wishes to launch a customer loyalty program, dividing the 5,702 customers in clusters, on which the best customers will be placed in a cluster named Insiders. </p>
+<p align="justify"> Michael, Franklin and Trevor, after several successful businesses, are starting new a company called Star Jeans. For now, their plan is to enter the USA fashion market through an E-commerce. The initial idea is to sell one product for a specific audience, which is male jeans. Their goal is to keep prices low and slowly increase them, as they get new clients. However, this market already has strong competitors, such as H&M for instance. In addition to that, the three businessmen aren't familiar with this segment in particular. Therefore, in order to better understand how this market works they hired a Data Science/Engineering freelancer, to gather information regarding H&M. Star Jeans wants to know the following information on H&M male jeans: </p>
 
-<p align="justify"> To achieve this goal, the Data Science Team was requested to provide a list of customers that will participate in Insiders, as well as a business report regarding the clusters, answering the following questions: </p>
-  
-##### 1) **How many customers will be a part of Insiders?**
-##### 2) **How many clusters were created?**
-##### 3) **How are the customers distributed amongst the clusters?**
-##### 4) **What are these customers' main features?**
-##### 5) **What's the gross revenue percentage coming from Insiders? And what about other clusters?**
-##### 6) **How many items were purchased by each cluster?**
+- Product Name
+- Product Type
+- Product Fit
+- Product Color
+- Product Composition
+- Product Price </p>
 
-With that list and report the Marketing Team will promote actions to each cluster, in order to increase revenue, but of course focusing mostly in the Insiders cluster.
+# 2. **Solution Plan**
+## 2.1. How was the problem solved?
 
-# 2. **Data Overview**
-The data was collected from Kaggle in the CSV format. The initial features descriptions are available below:
-
-<div align="center">
-  
-| **Feature**          | **Definition** |
-|:--------------------:|----------------|
-|       InvoiceNo      | A 6-digit integral number uniquely assigned to each transaction |
-|       StockCode      | Product (item) code | 
-|       Description    | Product (item) name |
-|       Quantity       | The quantities of each product (item) per transaction |
-|       InvoiceDate    | The day when each transaction was generated |
-|       UnitPrice      | Unit price (product price per unit) |
-|       CustomerID     | Customer number (unique id assigned to each customer) |
-|       Country        | The name of the country where each customer residers |
-  
-</div>
-
-# 3. **Business Assumptions**
-
-- All observations on which unit_price <= 0 were removed, as we're assuming those are gifts when unit_price = 0, and when unit_price < 0 it's described as "Adjust bad debt".  
-- Some stock_code identifications weren't actual products, therefore they were removed.  
-- Both description and country columns were removed, since those aren't relevant when modelling.  
-- <p align="justify">Customer number 16446 was removed because he (she) bought 80995 items and returned them in the same day, leading to extraordinary values in other features. Other 12 customers were removed because they returned all items bought. In addition to that, three other users were also removed because they were considered to be data inconsistencies, since they had their return values greater than quantity of items bought, which doesn't make sense. These 16 were named "bad users".<p>
-
-# 4. **Solution Plan**
-## 4.1. How was the problem solved?
-
-<p align="justify"> To provide the clusters final report the following steps were performed: </p>
+<p align="justify"> To gather the information regarding H&M male jeans the following steps were performed: </p>
 
 - <b> Understanding the Business Problem</b>: Understanding the main objective we are trying to achieve and plan the solution to it. 
+
+# COLOCAR AQUI A DESCRIÇÃO DOS JOBS E A IMAGEM DO EXCALIDRAW
 
 - <b> Collecting Data</b>: Collecting data from Kaggle.
 
@@ -86,7 +59,7 @@ The data was collected from Kaggle in the CSV format. The initial features descr
 
 - <p align="justify"> <b>Final Report and Deployment</b>: Providing a business report regarding the clusters, as well as a list of customers that will participate in Insiders. This report was built using <a href="https://powerbi.microsoft.com/pt-br/">Power BI</a>, as well as <a href="https://render.com/">Render Cloud</a> and <a href="https://www.google.com/intl/pt-BR/drive/">Google Drive</a>, so that it could be accessed from anywhere. More information in <a href="https://github.com/brunodifranco/project-outleto-clustering#8-final-report-and-deployment"> Section 8</a>.</p>
 
-## 4.2. Tools and techniques used:
+## 2.2. Tools and techniques used:
 - [Python 3.10.8](https://www.python.org/downloads/release/python-3108/), [Pandas](https://pandas.pydata.org/), [Matplotlib](https://matplotlib.org/), [Seaborn](https://seaborn.pydata.org/), [Sklearn](https://scikit-learn.org/stable/), [SciPy](https://scipy.org/) and [Pandas Profiling](https://pypi.org/project/pandas-profiling/).
 - [SQL](https://www.w3schools.com/sql/) and [PostgresSQL](https://www.postgresql.org/).
 - [Jupyter Notebook](https://jupyter.org/) and [VSCode](https://code.visualstudio.com/).
