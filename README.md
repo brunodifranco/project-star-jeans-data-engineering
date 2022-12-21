@@ -103,7 +103,7 @@ improvments:
 <i> It's important to notice that the new data is always being appended to the database, not replaced, so it can be possible to spot differences in prices from the same product over time. </i> </p>
 
 # 6. **Streamlit App**
-<p align="justify"> Streamlit was the chosen application to display the data since it's easy to create interactive tools, such as filters for instance. In addition to that, its deployment can be made directly through Streamlit Cloud itself, not requering another Cloud. Once the data is added in the PostgreSQL Database, the Streamlit App has two jobs: </p>
+<p align="justify"> Streamlit was the chosen application to display the data since it's easy to create interactive tools, such as filters for instance. In addition to that, its deployment can be made directly through Streamlit Cloud itself, not requering another Cloud. Once the data is added in the PostgreSQL database, the Streamlit App has two jobs: </p>
   
 - <p align="justify"> <b> Job 05 </b>: Insert the data from the PostgreSQL Database to Streamlit. </p>  
 - <p align="justify"> <b> Job 06 </b>: Displaying data in a table and adding interactive filters to it. </p>    
@@ -113,7 +113,7 @@ improvments:
 # 7. **Conclusion**
 In this project the main objective was accomplished:
 
- <p align="justify"> <b> We managed to provide a business report using Power BI, containing answers to the questions previously demanded by Outleto's Marketing Team, as well as a list of eligible customers to be a part of Insiders. With that report the Marketing Team will promote actions to each cluster, in order to increase revenue, but of course focusing mostly in the Insiders cluster, since they represent 53.5% of the total gross revenue. In addition to that, some useful business insights were found. </b> </p>
+ <p align="justify"> <b> We managed to create an ETL process that extracts data from H&M, a Star Jeans competitor, cleans it, and saves it to a PostgreSQL database on a weekly basis. Then, the database can be added and displayed with filters in a Streamlit App, where it can be accessed from anywhere by Star Jeans' owners, so they can have a better understanding on how the USA male jeans market works. </b> </p>
   
 # 8. **Next Steps**
 <p align="justify"> Further on, this solution could be improved by using <a href="https://airflow.apache.org/">Apache Airflow</a> instead of Windows Task Scheduler to automate the ETL process, since with Windows Task Scheduler the computer must be on for the script to run. </p>
