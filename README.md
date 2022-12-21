@@ -98,7 +98,7 @@ improvments:
 </div>
 
 # 5. **Loading**
-<p align="justify">After the data is cleaned, the script inserts it in a PostgreSQL Database using Python's SQLAlchemy library. For this project, a free Database is being used from <a href="https://neon.tech/">Neon.tech</a>. This whole process is <b>Job 04</b>. 
+<p align="justify">After the data is cleaned, the script inserts it in a PostgreSQL Database using Python's SQLAlchemy library. For this project, a free Database is being used from <a href="https://neon.tech/">Neon.tech</a>. This whole process is the <b>Job 04</b>. 
   
 <i> It's important to notice that the new data is always being appended to the database, not replaced, so it can be possible to spot differences in prices from the same product over time. </i> </p>
 
