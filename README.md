@@ -18,8 +18,8 @@ improvments:
 
 *The in-depth Python code explanation is available in [this](https://github.com/brunodifranco/project-outleto-clustering/blob/main/notebooks/outleto.ipynb) Jupyter Notebook.*
 
-# 1. **Outleto and Business Problem**
-<p align="justify"> Michael, Franklin and Trevor, after several successful businesses, are starting new a company called Star Jeans. For now, their plan is to enter the USA fashion market through an E-commerce. The initial idea is to sell one product for a specific audience, which is male jeans. Their goal is to keep prices low and slowly increase them, as they get new clients. However, this market already has strong competitors, such as H&M for instance. In addition to that, the three businessmen aren't familiar with this segment in particular. Therefore, in order to better understand how this market works they hired a Data Science/Engineering freelancer, to gather information regarding H&M. Star Jeans wants to know the following information on H&M male jeans: </p>
+# 1. **Star Jeans and Business Problem**
+<p align="justify"> Michael, Franklin and Trevor, after several successful businesses, are starting new a company called Star Jeans. For now, their plan is to enter the USA fashion market through an E-commerce. The initial idea is to sell one product for a specific audience, which is male jeans. Their goal is to keep prices low and slowly increase them, as they get new clients. However, this market already has strong competitors, such as H&M for instance. In addition to that, the three businessmen aren't familiar with this segment in particular. Therefore, in order to better understand how this market works they hired a Data Science/Engineering freelancer, to gather information regarding H&M. They want to know the following information on H&M male jeans: </p>
 
 - Product Name
 - Product Type
@@ -39,9 +39,9 @@ improvments:
 
 - <b> Transformation </b>: Data Cleaning (Job 03). More information in <a href="https://github.com/brunodifranco/project-outleto-clustering#5-feature-engineering">Section 5</a>.</p>
 
-- <b> Loading </b>: Inserting data in PostgreSQL Database (Job 04). More information in <a href="https://github.com/brunodifranco/project-outleto-clustering#5-feature-engineering">Section 5</a>.</p>
+- <b> Loading </b>: Inserting data in a PostgreSQL Database (Job 04). More information in <a href="https://github.com/brunodifranco/project-outleto-clustering#5-feature-engineering">Section 5</a>.</p>
 
-- <b> Streamlit App </b>: Loading Database in Streamlit App (Job 05); displaying data and adding filters in Streamlit App (Job 06). More information in <a href="https://github.com/brunodifranco/project-outleto-clustering#5-feature-engineering">Section 5</a>.</p>
+- <b> Deployment and Streamlit App </b>: Loading Database in Streamlit App (Job 05); displaying data and adding filters in Streamlit App (Job 06). More information in <a href="https://github.com/brunodifranco/project-outleto-clustering#5-feature-engineering">Section 5</a>.</p>
 
 [Here](https://docs.google.com/spreadsheets/d/1ipHa7oxNVYF1zpFfDz5yG63RP0GvpRLFOzBozBHIdRA/edit?usp=sharing) you can find the full ETL documentation, and below there's an illustration showing the complete ETL process and dynamic: 
 
@@ -49,7 +49,9 @@ improvments:
   <img src="https://user-images.githubusercontent.com/66283452/208748904-f7ada2f7-8ced-4bbd-a473-85102fab9c5e.png" alt="drawing" />
 </p>
 
+<p align="justify">
 
+All jobs are performed sequentially. Jobs 01-04 are ran by <a href="https://github.com/brunodifranco/project-star-jeans-data-engineering/blob/main/star-jeans-etl/webscraping-hm.py">this</a> script, while the Streamlit App (Jobs 05 and 06) is built by <a href="https://github.com/brunodifranco/project-star-jeans-data-engineering/blob/main/star-jeans-etl/streamlit-app/star-jeans-app.py">this</a> script. Jobs 01-04 are scheduled to run on a weekly basis via Windows Task Scheduler, which makes the Streamlit App (Jobs 05 an 06) also updated in the same period frequency, since Job 05 loads the Database in Streamlit, after it's been processed by the ETL. </p>
 
 ## 2.2. Tools and techniques used:
 - [Python 3.10.8](https://www.python.org/downloads/release/python-3108/), [Pandas](https://pandas.pydata.org/) and [Beautiful Soup](https://beautiful-soup-4.readthedocs.io/en/latest/).
@@ -61,39 +63,43 @@ improvments:
 - [Git](https://git-scm.com/) and [Github](https://github.com/).
 
 # 3. **Extraction**
-In total, 10 new features were created by using the original ones: 
+The extraction was made by scraping the H&M male jeans webpage, using Python and Beatiful Soup library. This process was divided in two jobs:
 
-<div align="center">
-  
-| **New Feature** | **Definition** |
-|:--------------------:|----------------|
-| Gross Revenue | Gross revenue for each customer, which is equal to quantity times unit price |
-| Average Ticket | Average monetary value spent on each purchase |
-| Recency Days | Period of time from current time to the last purchase | 
-| Max Recency Days | Max time a customer's gone without making any purchases |
-| Frequency | Average purchases made by each customer during their latest purchase period and first purchase period |
-| Purchases Quantity | Amount of times a customers's made any purchase |
-| Quantity of Products | Total of products purchased |
-| Quantity of Items | Total quantity of items purchased |
-| Returns | Amount of items returned |
-| Purchased and Returned Difference | Natural log of difference between items purchased and items returned | 
-  
-</div>
+- Job 01: Gathering the web page link and product id for each product in the showroom, as well as the product type, since this information wasn't available in the individual product's pages. Then, the product id was split in style id (first 7 digits) and color id (last 3 digits) for latter merging and concating. 
+
+- Job 02: Getting other attributes from each product and saving it all in Pandas DataFrame. These other attributes were product name, fit, color, composition and price. In addition to that, a scraping_datetime variable was added, which shows when the scraping was done. 
+
+<i> Job 02 is by far the most time consuming in terms of script running out of all Jobs. </i>
 
 # 4. **Transformation**
-<p align="justify"> In order to get better data separation a few dimensionality reduction techniques were tested: PCA, UMAP and Tree-Based Embedding. The Results were satisfactory with Tree-Based Embedding, which consists of: </p>
+<p align="justify"> As we had the full raw table now it was time to clean it. Firstly all columns names were set to snake case style, and all rows from product_color, product_fit, product_name and product_price were also set to snake case style. </p>
 
-- Setting gross_revenue as a response variable, so it becomes a supervised learning problem.
-- Training a Random Forest (RF) model to predict gross_revenue using all other features.
-- Plotting the embedding based on RF's leaves.
+<p align="justify"> The most difficult column to fix was the product_composition, since it had to be split in other six columns: cotton, spandex, elastomultiester, lyocell, rayon. Each one of these columns indicates how much, in percentage terms, they contribute to the product's composition. Finally the duplicated values were dropped and columns were rearranged. The final table definition is as follows: </p>
 
-In total four clustering algorithms were tested, for a cluster number varying from 2 to 24:
-- K-Means
-- Gaussian Mixture Models (GMM) with Expectation–Maximization (EM)
-- Agglomerative Hierarchical Clustering (HC)
-- DBSCAN 
+<div align="center">
 
-<p align="justify"> The models were evaluated by silhouette score, as well as clustering visualization. Our maximum cluster number was set to 11 due to practical purposes for Outleto's Marketing Team, so they can come up with exclusive actions for each cluster. DBSCAN had its parameters optimized with Bayesian Optimization, however, because it provided a very high number of clusters it was withdrawn as a possible final model. The results were quite similar for K-Means, GMM and HC with clusters from 8 to 11, however <b>KMeans</b> were chosen with <b>8</b> clusters because its silhouette score is slightly better, being equal to 0.6168. Those 8 cluster names are <b> Insiders, Runners Up, Promising, Potentials, Need Attention, About to Sleep, At Risk </b> and <b> About to Lose </b>.
+| **Column**          | **Definition** |
+|:--------------------:|----------------|
+|      product_id     | A 10-digit number uniquely assigned to each product, composed of style_id and color_id |
+|      style_id       | A 7-digit number uniquely assigned to each product style| 
+|      color_id       | A 3-digit number assigned to each product color|
+|      product_name   | Product's name |
+|      product_type   | Product's type |
+|      product_color  | Product's color |
+|      product_fit    | Product's fit - if it's slim, skinny, loose, etc |
+|      cotton         | Percentage of cotton in the product's composition |
+|      spandex        | Percentage of spandex in the product's composition |
+|      polyester      | Percentage of polyester in the product's composition |
+|    elastomultiester | Percentage of elastomultiester in the product's composition |
+|       lyocell       | Percentage of lyocell in the product's composition |
+|       rayon         | Percentage of rayon in the product's composition |
+|       product_price | Product's unit price |
+|  scraping_datetime  | The Date of which the data scraping was performed |
+
+</div>
+
+
+
 
 # 5. **Loading**
 
