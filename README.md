@@ -45,13 +45,12 @@
 
 ## 2.2. Tools and techniques used:
 - [Python 3.10.8](https://www.python.org/downloads/release/python-3108/), [Pandas](https://pandas.pydata.org/) and [Beautiful Soup](https://beautiful-soup-4.readthedocs.io/en/latest/).
-- [Jupyter Notebook](https://jupyter.org/) and [VSCode](https://code.visualstudio.com/).
-- [ETL Process](https://www.keboola.com/blog/etl-process-overview)
-- [Web Scraping](https://towardsdatascience.com/a-step-by-step-guide-to-web-scraping-in-python-5c4d9cef76e8)
-- [Streamlit](https://streamlit.io/)
 - [SQL](https://www.w3schools.com/sql/) and [PostgresSQL](https://www.postgresql.org/).
+- [Jupyter Notebook](https://jupyter.org/) and [VSCode](https://code.visualstudio.com/).
+- [Web Scraping](https://towardsdatascience.com/a-step-by-step-guide-to-web-scraping-in-python-5c4d9cef76e8).
+- [ETL Process](https://www.keboola.com/blog/etl-process-overview) and [Windows Task Scheduler](https://www.windowscentral.com/how-create-automated-task-using-task-scheduler-windows-10).
+- [Streamlit](https://streamlit.io/).
 - [Git](https://git-scm.com/) and [Github](https://github.com/).
-- [Neon.tech](https://neon.tech/)
 
 # 3. **Extraction**
 <p align="justify"> The extraction is made by scraping the H&M male jeans webpage, using Python and Beautiful Soup library. This process is divided in two jobs: </p>
