@@ -116,13 +116,7 @@ In this project the main objective was accomplished:
  <p align="justify"> <b> We managed to provide a business report using Power BI, containing answers to the questions previously demanded by Outleto's Marketing Team, as well as a list of eligible customers to be a part of Insiders. With that report the Marketing Team will promote actions to each cluster, in order to increase revenue, but of course focusing mostly in the Insiders cluster, since they represent 53.5% of the total gross revenue. In addition to that, some useful business insights were found. </b> </p>
   
 # 8. **Next Steps**
-<p align="justify"> Further on, this solution could be improved by a few strategies:
-  
-- Requesting more data from Outleto, such as product associated data. 
-  
-- Creating even more features. 
-
-- Making the final report even more automatic for when new data comes in, so it could be run every time requested and the data instantly saved in the PostgreSQL database. This could be done by using the Papermill library.  </p>
+<p align="justify"> Further on, this solution could be improved by using <a href="https://airflow.apache.org/">Apache Airflow</a> instead of Windows Task Scheduler to automate the ETL process, since with Windows Task Scheduler the computer must be on for the script to run. </p>
 
 # Contact
 
