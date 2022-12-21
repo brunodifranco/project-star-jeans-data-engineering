@@ -41,7 +41,7 @@ improvments:
 
 - <b> Loading </b>: Inserting data in a PostgreSQL Database (Job 04). More information in <a href="https://github.com/brunodifranco/project-outleto-clustering#5-feature-engineering">Section 5</a>.</p>
 
-- <b> Deployment and Streamlit App </b>: Loading Database in Streamlit App (Job 05); displaying data and adding filters in Streamlit App (Job 06). More information in <a href="https://github.com/brunodifranco/project-outleto-clustering#5-feature-engineering">Section 5</a>.</p>
+- <b> Streamlit App </b>: Loading Database in the Streamlit App (Job 05); displaying data and adding filters in the Streamlit App (Job 06). More information in <a href="https://github.com/brunodifranco/project-outleto-clustering#5-feature-engineering">Section 5</a>.</p>
 
 [Here](https://docs.google.com/spreadsheets/d/1ipHa7oxNVYF1zpFfDz5yG63RP0GvpRLFOzBozBHIdRA/edit?usp=sharing) you can find the full ETL documentation, and below there's an illustration showing the complete ETL process and dynamic: 
 
@@ -49,9 +49,7 @@ improvments:
   <img src="https://user-images.githubusercontent.com/66283452/208748904-f7ada2f7-8ced-4bbd-a473-85102fab9c5e.png" alt="drawing" />
 </p>
 
-<p align="justify">
-
-All jobs are performed sequentially. Jobs 01-04 are ran by <a href="https://github.com/brunodifranco/project-star-jeans-data-engineering/blob/main/star-jeans-etl/webscraping-hm.py">this</a> script, while the Streamlit App (Jobs 05 and 06) is built by <a href="https://github.com/brunodifranco/project-star-jeans-data-engineering/blob/main/star-jeans-etl/streamlit-app/star-jeans-app.py">this</a> script. Jobs 01-04 are scheduled to run on a weekly basis via Windows Task Scheduler, which makes the Streamlit App (Jobs 05 an 06) also updated in the same period frequency, since Job 05 loads the Database in Streamlit, after it's been processed by the ETL. </p>
+<p align="justify"> All jobs are performed sequentially. Jobs 01-04 are ran by <a href="https://github.com/brunodifranco/project-star-jeans-data-engineering/blob/main/star-jeans-etl/webscraping-hm.py">this</a> script, while the Streamlit App (Jobs 05 and 06) is built by <a href="https://github.com/brunodifranco/project-star-jeans-data-engineering/blob/main/star-jeans-etl/streamlit-app/star-jeans-app.py">this</a> script. Jobs 01-04 are scheduled to run on a weekly basis via Windows Task Scheduler, which makes the Streamlit App (Jobs 05 an 06) also updates in the same period frequency, since Job 05 loads the Database in Streamlit, after it's been processed by the ETL. </p>
 
 ## 2.2. Tools and techniques used:
 - [Python 3.10.8](https://www.python.org/downloads/release/python-3108/), [Pandas](https://pandas.pydata.org/) and [Beautiful Soup](https://beautiful-soup-4.readthedocs.io/en/latest/).
@@ -61,20 +59,21 @@ All jobs are performed sequentially. Jobs 01-04 are ran by <a href="https://gith
 - [Streamlit](https://streamlit.io/)
 - [SQL](https://www.w3schools.com/sql/) and [PostgresSQL](https://www.postgresql.org/).
 - [Git](https://git-scm.com/) and [Github](https://github.com/).
+- [Neon.tech](https://neon.tech/)
 
 # 3. **Extraction**
-The extraction was made by scraping the H&M male jeans webpage, using Python and Beatiful Soup library. This process was divided in two jobs:
+<p align="justify"> The extraction is made by scraping the H&M male jeans webpage, using Python and Beatiful Soup library. This process is divided in two jobs: </p>
 
-- Job 01: Gathering the web page link and product id for each product in the showroom, as well as the product type, since this information wasn't available in the individual product's pages. Then, the product id was split in style id (first 7 digits) and color id (last 3 digits) for latter merging and concating. 
+- <p align="justify"> <b> Job 01 </b>: Gathering the web page link and product id for each product in the showroom, as well as the product type, since this information wasn't available in the individual product's pages. Then, the product id was split in style id (first 7 digits) and color id (last 3 digits) for latter merging and concating. </p>
 
-- Job 02: Getting other attributes from each product and saving it all in Pandas DataFrame. These other attributes were product name, fit, color, composition and price. In addition to that, a scraping_datetime variable was added, which shows when the scraping was done. 
+- <p align="justify"> <b> Job 02 </b>: Getting other attributes from each product and saving it all in Pandas DataFrame. These other attributes were product name, fit, color, composition and price. In addition to that, a scraping_datetime variable was added, which shows when the scraping was done.  </p>
 
 <i> Job 02 is by far the most time consuming in terms of script running out of all Jobs. </i>
 
 # 4. **Transformation**
-<p align="justify"> As we had the full raw table now it was time to clean it. Firstly all columns names were set to snake case style, and all rows from product_color, product_fit, product_name and product_price were also set to snake case style. </p>
+<p align="justify"> After the full raw table is available it needs to be cleaned, which is <b>Job 03</b>. Firstly all columns names are set to snake case style, and all rows from product_color, product_fit, product_name and product_price are also set to snake case style. </p>
 
-<p align="justify"> The most difficult column to fix was the product_composition, since it had to be split in other six columns: cotton, spandex, elastomultiester, lyocell, rayon. Each one of these columns indicates how much, in percentage terms, they contribute to the product's composition. Finally the duplicated values were dropped and columns were rearranged. The final table definition is as follows: </p>
+<p align="justify"> The most difficult column to fix is the product_composition, since it's split in other six columns: cotton, spandex, elastomultiester, lyocell, rayon. Each one of these columns indicates how much, in percentage terms, they contribute to the product's composition. Finally the duplicated values are dropped and columns are rearranged. The final table definition is as follows: </p>
 
 <div align="center">
 
@@ -98,47 +97,19 @@ The extraction was made by scraping the H&M male jeans webpage, using Python and
 
 </div>
 
-
-
-
 # 5. **Loading**
-
- - ### 1st - Customers from Insiders are responsible for 58.3% of the total items purchased.
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/66283452/204071720-ab1d3d7c-e603-48e7-a13e-1cc0e97a4436.png" alt="drawing" width="850"/>
-</p>
-
---- 
-- ### 2nd - Customers from Insiders are responsible for 53.5% of the total gross revenue.
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/66283452/204071721-5af58f13-3bcc-420c-87a8-7a5ececfe2a2.png" alt="drawing" width="850"/>
-</p>
-
---- 
-
-- ### 3rd - Customers from Insiders have a number of returns higher than other customers, on average.
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/66283452/204071722-6f5827cc-a4f8-465e-81ae-ee10981caf62.png" alt="drawing" width="850"/>
+<p align="justify">After the data is cleaned, the script inserts it in a PostgreSQL Database using Python's SQLAlchemy library. For this project, a free Database is being used from <a href="https://neon.tech/">Neon.tech</a>. This whole process is <b>Job 04</b>. 
   
-<i>That's probably because those customers buy a really high amount of items.</i>  </p>
-  
----
+<i> It's important to notice that the new data is always being appended to the database, not replaced, so it can be possible to spot differences in prices from the same product over time. </i> </p>
 
 # 6. **Streamlit App**
-
-<p align="justify"> The final business report was built using Power BI, containing answers to the following questions previously demanded by Outleto's Marketing Team. This is how the report was built: </p>
+<p align="justify"> Streamlit was the chosen application to display the data since it's easy to create interactive tools, such as filters for instance. In addition to that, its deployment can be made directly through Streamlit Cloud itself, not requering another Cloud. Once the data is added in the PostgreSQL Database, the Streamlit App has two jobs: </p>
   
-- Firstly, a new PostgreSQL database was created in Render Cloud.
-- Then, the final data containing all customers already classified in their respective clusters was saved in this PostgreSQL database.
-- Continuing, the database was added in Power BI, making it possible to create the final business report, where it was saved in PDF format.
-- Finally, the report was uploaded to Google Drive, so it could be shared.
-  
-<b> Click here to access the report: </b>[![Google Drive](https://img.shields.io/badge/Google%20Drive-4285F4?style=for-the-badge&logo=googledrive&logoColor=white)](https://drive.google.com/file/d/1Ys3bbyh2evWvzbG5mXlM6MrH-z6neXmb/view)
+- <p align="justify"> <b> Job 05 </b>: Insert the data from the PostgreSQL Database to Streamlit. </p>  
+- <p align="justify"> <b> Job 06 </b>: Displaying data in a table and adding interactive filters to it. </p>    
 
-<p align="justify"> <b> Whereas for the list of customers that made it to insiders it was saved in CSV format, and it's available <a href="https://github.com/brunodifranco/project-outleto-clustering/blob/main/lists/insiders_list.csv">here</a> </b>. </p>
-   
-<i> The complete list of Outleto's customers is also available for download <a href="https://github.com/brunodifranco/project-outleto-clustering/blob/main/lists/full_list.csv">here</a> </i>. 
- 
+<b> Click here to access the App: </b> [![Streamlit App](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)](https://star-jeans.streamlit.app/)
+
 # 7. **Conclusion**
 In this project the main objective was accomplished:
 
