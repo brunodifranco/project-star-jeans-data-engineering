@@ -1,6 +1,6 @@
 # **WORK IN PROGRESS**
 
-https://docs.google.com/spreadsheets/d/1ipHa7oxNVYF1zpFfDz5yG63RP0GvpRLFOzBozBHIdRA/edit?usp=sharing
+
 
 improvments:
 - Airflow
@@ -43,25 +43,24 @@ improvments:
 
 - <b> Streamlit App </b>: Loading Database in Streamlit App (Job 05); displaying data and adding filters in Streamlit App (Job 06). More information in <a href="https://github.com/brunodifranco/project-outleto-clustering#5-feature-engineering">Section 5</a>.</p>
 
-Below there's an illustration showing the complete ETL process and dynamic: 
+[Here](https://docs.google.com/spreadsheets/d/1ipHa7oxNVYF1zpFfDz5yG63RP0GvpRLFOzBozBHIdRA/edit?usp=sharing) you can find the full ETL documentation, and below there's an illustration showing the complete ETL process and dynamic: 
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/66283452/208748904-f7ada2f7-8ced-4bbd-a473-85102fab9c5e.png" alt="drawing" />
 </p>
 
+
+
 ## 2.2. Tools and techniques used:
 - [Python 3.10.8](https://www.python.org/downloads/release/python-3108/), [Pandas](https://pandas.pydata.org/) and [Beautiful Soup](https://beautiful-soup-4.readthedocs.io/en/latest/).
-- [Web Scraping Techniques] ()
-- [SQL](https://www.w3schools.com/sql/) and [PostgresSQL](https://www.postgresql.org/).
 - [Jupyter Notebook](https://jupyter.org/) and [VSCode](https://code.visualstudio.com/).
-- [Power BI](https://powerbi.microsoft.com/pt-br/). 
-- [Render Cloud](https://render.com/) and [Google Drive](https://www.google.com/intl/pt-BR/drive/).
+- [ETL Process](https://www.keboola.com/blog/etl-process-overview)
+- [Web Scraping](https://towardsdatascience.com/a-step-by-step-guide-to-web-scraping-in-python-5c4d9cef76e8)
+- [Streamlit](https://streamlit.io/)
+- [SQL](https://www.w3schools.com/sql/) and [PostgresSQL](https://www.postgresql.org/).
 - [Git](https://git-scm.com/) and [Github](https://github.com/).
-- [Exploratory Data Analysis (EDA)](https://towardsdatascience.com/exploratory-data-analysis-8fc1cb20fd15). 
-- [Techniques for Feature Selection](https://machinelearningmastery.com/feature-selection-with-real-and-categorical-data/).
-- [Clustering Algorithms (K-Means,  Gaussian Mixture Models, Agglomerative Hierarchical Clustering and DBSCAN)](https://towardsdatascience.com/the-5-clustering-algorithms-data-scientists-need-to-know-a36d136ef68).
 
-# 5. **Feature Engineering**
+# 3. **Extraction**
 In total, 10 new features were created by using the original ones: 
 
 <div align="center">
@@ -81,7 +80,7 @@ In total, 10 new features were created by using the original ones:
   
 </div>
 
-# 6. **Machine Learning Modeling**
+# 4. **Transformation**
 <p align="justify"> In order to get better data separation a few dimensionality reduction techniques were tested: PCA, UMAP and Tree-Based Embedding. The Results were satisfactory with Tree-Based Embedding, which consists of: </p>
 
 - Setting gross_revenue as a response variable, so it becomes a supervised learning problem.
@@ -95,17 +94,8 @@ In total four clustering algorithms were tested, for a cluster number varying fr
 - DBSCAN 
 
 <p align="justify"> The models were evaluated by silhouette score, as well as clustering visualization. Our maximum cluster number was set to 11 due to practical purposes for Outleto's Marketing Team, so they can come up with exclusive actions for each cluster. DBSCAN had its parameters optimized with Bayesian Optimization, however, because it provided a very high number of clusters it was withdrawn as a possible final model. The results were quite similar for K-Means, GMM and HC with clusters from 8 to 11, however <b>KMeans</b> were chosen with <b>8</b> clusters because its silhouette score is slightly better, being equal to 0.6168. Those 8 cluster names are <b> Insiders, Runners Up, Promising, Potentials, Need Attention, About to Sleep, At Risk </b> and <b> About to Lose </b>.
-  
-## <i>Metrics Definition</i>
-There're two properties we look for when creating clusters:
 
-- <b>Compactness</b>: Observations from the same cluster must be compact with one another, meaning the distance between them should be as small as possible.
-
-- <b>Separation</b>: Different clusters must be as far apart from one another as possible.
-
-<b>Silhouette Score</b> covers both these properties. It goes from -1 to 1, the higher the better.
-
-# 7. **Top Business Insights**
+# 5. **Loading**
 
  - ### 1st - Customers from Insiders are responsible for 58.3% of the total items purchased.
 <p align="center">
@@ -128,7 +118,7 @@ There're two properties we look for when creating clusters:
   
 ---
 
-# 8. **Final Report and Deployment**
+# 6. **Streamlit App**
 
 <p align="justify"> The final business report was built using Power BI, containing answers to the following questions previously demanded by Outleto's Marketing Team. This is how the report was built: </p>
   
@@ -143,12 +133,12 @@ There're two properties we look for when creating clusters:
    
 <i> The complete list of Outleto's customers is also available for download <a href="https://github.com/brunodifranco/project-outleto-clustering/blob/main/lists/full_list.csv">here</a> </i>. 
  
-# 9. **Conclusion**
+# 7. **Conclusion**
 In this project the main objective was accomplished:
 
  <p align="justify"> <b> We managed to provide a business report using Power BI, containing answers to the questions previously demanded by Outleto's Marketing Team, as well as a list of eligible customers to be a part of Insiders. With that report the Marketing Team will promote actions to each cluster, in order to increase revenue, but of course focusing mostly in the Insiders cluster, since they represent 53.5% of the total gross revenue. In addition to that, some useful business insights were found. </b> </p>
   
-# 10. **Next Steps**
+# 8. **Next Steps**
 <p align="justify"> Further on, this solution could be improved by a few strategies:
   
 - Requesting more data from Outleto, such as product associated data. 
