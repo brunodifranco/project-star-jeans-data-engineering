@@ -71,10 +71,10 @@ if __name__ == "__main__":
     engine = connect_engine(conn_url)
 
     # Get Data
-    data = get_data(engine)
+    data = get_data(engine) # Job 05
 
     # Display Data
-    show_data(data)
+    show_data(data) # Job 06
 
     # Display Columns Definitions
     show_cols_definitions()
