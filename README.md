@@ -38,7 +38,7 @@
 [Here](https://docs.google.com/spreadsheets/d/1ipHa7oxNVYF1zpFfDz5yG63RP0GvpRLFOzBozBHIdRA/edit?usp=sharing) you can find the full ETL documentation, and below there's an illustration showing the complete ETL process and dynamic: 
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/66283452/208748904-f7ada2f7-8ced-4bbd-a473-85102fab9c5e.png" alt="drawing" width=1200 />
+  <img src="https://user-images.githubusercontent.com/66283452/208748904-f7ada2f7-8ced-4bbd-a473-85102fab9c5e.png" width=2000 />
 </p>
 
 <p align="justify"> All jobs are performed sequentially. Jobs 01-04 are being run by <a href="https://github.com/brunodifranco/project-star-jeans-data-engineering/blob/main/star-jeans-etl/webscraping-hm.py">this</a> script, while the Streamlit App (Jobs 05 and 06) is built by <a href="https://github.com/brunodifranco/project-star-jeans-data-engineering/blob/main/star-jeans-etl/streamlit-app/star-jeans-app.py">this</a> script. Jobs 01-04 are scheduled to run on a weekly basis via Windows Task Scheduler, which makes the Streamlit App (Jobs 05 an 06) also updates in the same period frequency, since Job 05 loads the Database in Streamlit, after it's been processed by the ETL. </p>
