@@ -6,9 +6,13 @@
   <img src="https://user-images.githubusercontent.com/66283452/209023968-1effb930-5759-4694-89d6-8cecc3ee5db1.png" width=550 />
 </p>
 
-*Obs: The company and business problem are both fictitious, although the data is real.*
+*Obs 1: The company and business problem are both fictitious, although the data is real.*
+
+*Obs 2: Scraping the H&M website is allowed according to H&M's robots.txt file.*
 
 *The in-depth Python code explanation is available in [this](https://github.com/brunodifranco/project-star-jeans-data-engineering/blob/main/star-jeans.ipynb) Jupyter Notebook.*
+
+
 
 # 1. **Star Jeans and Business Problem**
 <p align="justify"> Michael, Franklin and Trevor, after several successful businesses, are starting new a company called Star Jeans. For now, their plan is to enter the USA fashion market through an E-commerce. The initial idea is to sell one product for a specific audience, which is <b>male jeans</b>. Their goal is to keep prices low and slowly increase them, as they get new clients. However, this market already has strong competitors, such as H&M for instance. In addition to that, the three businessmen aren't familiar with this segment in particular. Therefore, in order to better understand how this market works they hired a Data Science/Engineering freelancer to gather information regarding H&M. They want to know the following information about H&M male jeans: </p>
@@ -108,6 +112,8 @@ In this project the main objective was accomplished:
   
 # 8. **Next Steps**
 <p align="justify"> Further on, this solution could be improved by using <a href="https://airflow.apache.org/">Apache Airflow</a> instead of Windows Task Scheduler to automate the ETL process, since with Windows Task Scheduler the computer must be on for the script to run. </p>
+
+
 
 # Contact
 
