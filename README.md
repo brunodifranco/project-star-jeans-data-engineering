@@ -113,8 +113,6 @@ In this project the main objective was accomplished:
 # 8. **Next Steps**
 <p align="justify"> Further on, this solution could be improved by using <a href="https://airflow.apache.org/">Apache Airflow</a> instead of Windows Task Scheduler to automate the ETL process, since with Windows Task Scheduler the computer must be on for the script to run. </p>
 
-
-
 # Contact
 
 - brunodifranco99@gmail.com
