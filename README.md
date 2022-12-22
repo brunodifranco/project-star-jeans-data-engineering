@@ -99,7 +99,7 @@
 - <p align="justify"> <b> Job 05 </b>: Insert the data from the PostgreSQL Database to Streamlit. </p>  
 - <p align="justify"> <b> Job 06 </b>: Displaying data in a table and adding interactive filters to it. </p>    
 
-<b> Click here to access the App: </b> [![Streamlit App](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)](https://star-jeans.streamlit.app/)
+<b> Click here to access the App:</b> [![Streamlit App](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)](https://star-jeans.streamlit.app/)
 
 # 7. **Conclusion**
 In this project the main objective was accomplished:
