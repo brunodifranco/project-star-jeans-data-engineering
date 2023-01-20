@@ -12,8 +12,6 @@
 
 *The in-depth Python code explanation is available in [this](https://github.com/brunodifranco/project-star-jeans-data-engineering/blob/main/star-jeans.ipynb) Jupyter Notebook.*
 
-
-
 # 1. **Star Jeans and Business Problem**
 <p align="justify"> Michael, Franklin and Trevor, after several successful businesses, are starting new a company called Star Jeans. For now, their plan is to enter the USA fashion market through an E-commerce. The initial idea is to sell one product for a specific audience, which is <b>male jeans</b>. Their goal is to keep prices low and slowly increase them, as they get new clients. However, this market already has strong competitors, such as H&M for instance. In addition to that, the three businessmen aren't familiar with this segment in particular. Therefore, in order to better understand how this market works they hired a Data Science/Engineering freelancer to gather information regarding H&M. They want to know the following information about H&M male jeans: </p>
 
