@@ -8,9 +8,29 @@ import numpy  as np
 from datetime   import datetime
 from bs4        import BeautifulSoup
 from sqlalchemy import create_engine
+from typing import Union
 
 # Functions
-def get_showroom(url, headers):
+def get_showroom(url: str, headers: dict) -> pd.DataFrame:
+    """
+    Gets product attributes.
+
+    Parameters
+    ----------
+    url : str
+    Web site url.
+
+    headers : dict
+    User agent (e.g. {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)
+                      AppleWebKit/537.36 (KHTML, like Gecko)
+                      Chrome/108.0.0.0 Safari/537.36'}).
+    
+    Returns
+    -------
+    df_scraped : pd.DataFrame
+    Scrapes DataFrame.
+
+    """
     page = requests.get(url, headers=headers) # accessing url
     soup = BeautifulSoup(page.text, 'html.parser') # beautifulSoup object
 
@@ -35,7 +55,23 @@ def get_showroom(url, headers):
 
     return df_scraped
 
-def get_product_attributes(df_scraped):
+def get_product_attributes(df_scraped: pd.DataFrame) -> Union[None, pd.DataFrame]:
+    """
+    Gets product attributes.
+
+    Parameters
+    ----------
+    df_scraped : pd.DataFrame
+    Scrapes DataFrame.
+
+    Returns
+    -------
+    Union[None, pd.DataFrame]
+        if successful: pd.DataFrame
+        DataFrame with attributes
+
+        if not successful : None
+    """
     df_compositions = pd.DataFrame()
     # API Requests
     for i in range(len(df_scraped)):
@@ -111,7 +147,21 @@ def get_product_attributes(df_scraped):
 
     return df_raw
 
-def data_cleaning(df_raw):
+def data_cleaning(df_raw: pd.DataFrame) -> pd.DataFrame:
+    """
+    Cleans data.
+
+    Parameters
+    ----------
+    df_raw : pd.DataFrame
+    DataFrame.
+
+    Returns
+    -------
+    df : pd.DataFrame
+    DataFrame.   
+    """
+
     df_raw.rename(columns = {'fit' : 'product_fit', 'color_name' : 'product_color', 'composition' : 'product_composition'}, inplace=True) 
     df_raw['product_color'] = df_raw['product_color'].apply(lambda x: x.replace(' ', '_').lower() if pd.notnull(x) else x)
     df_raw['product_fit'] = df_raw['product_fit'].apply(lambda x: x.replace(' ', '_').lower() if pd.notnull(x) else x)
@@ -168,7 +218,20 @@ def data_cleaning(df_raw):
 
     return df
 
-def data_insert(df):
+def data_insert(df: pd.DataFrame) -> None:
+    """
+    Inserts data in the database.
+
+    Parameters
+    ----------
+    df : pd.DataFrame
+    DataFrame.
+
+    Returns
+    -------
+    None     
+    """
+
     df_insert = df.copy()
     conn = create_engine('postgresql://brunodifranco:ExoCs9IRXJ6u@ep-soft-disk-362766.us-east-2.aws.neon.tech:5432/neondb', echo=False) # connection
     df_insert.to_sql('hm', con=conn, if_exists='append', index=False) # inserting data to table 
